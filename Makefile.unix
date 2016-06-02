@@ -1,0 +1,36 @@
+# A simple Makefile for CPSC 360
+CC = gcc
+
+ifndef UNIX
+#cygwin includes
+INCS = -I/usr/include/opengl
+#cygwin lib directory
+LIBDIR = -L/lib/w32api
+else
+#unix includes
+INCS = -I/set/this/accordingly
+#unix lib directory
+LIBDIR = -L/set/this/accordingly
+endif
+
+#link libs
+LIBS = -lglui -lglu32 -lopengl32 -lglut32 -lm
+
+# the source files to be built
+SOURCES = *.c
+
+# object files
+OBJS = *.o
+
+# the name of the executable
+PROG = final
+
+# executable file extension
+BINEXT = .exe
+
+all:
+	$(CC) -c $(INCS) $(SOURCES)
+	$(CC) $(LIBDIR) $(OBJS) $(LIBS) -o $(PROG)$(BINEXT)
+
+
+# this line required by make - don't delete
